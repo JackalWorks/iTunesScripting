@@ -6,7 +6,3 @@
 //  Copyright (c) 2015 Are Digranes. All rights reserved.
 //
 
-import Foundation
-
-println("Hello, World!")
-

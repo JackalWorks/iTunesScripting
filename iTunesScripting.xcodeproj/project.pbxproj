@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BE9A59FD1AF841F4006FB553 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9A59FC1AF841F4006FB553 /* main.swift */; };
+		BE9A5A041AF84242006FB553 /* iTunes.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE9A5A031AF84242006FB553 /* iTunes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +26,7 @@
 /* Begin PBXFileReference section */
 		BE9A59F91AF841F4006FB553 /* iTunesScripting */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = iTunesScripting; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE9A59FC1AF841F4006FB553 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		BE9A5A031AF84242006FB553 /* iTunes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iTunes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				BE9A59FC1AF841F4006FB553 /* main.swift */,
+				BE9A5A031AF84242006FB553 /* iTunes.swift */,
 			);
 			path = iTunesScripting;
 			sourceTree = "<group>";
@@ -119,6 +122,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE9A59FD1AF841F4006FB553 /* main.swift in Sources */,
+				BE9A5A041AF84242006FB553 /* iTunes.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
