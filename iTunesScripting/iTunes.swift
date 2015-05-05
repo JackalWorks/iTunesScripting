@@ -14,91 +14,94 @@ import ScriptingBridge
 // iTunes version where we picked up the definitions
 let iTunesScriptVersion = "12.1.2.27"
 
-// Enums
+// The iTunes bundle identifier
+let iTunesBundleIdentifier = "com.apple.iTunes"
 
-enum iTunesEKnd: String {
-    case iTunesEKndTrackListing = "kTrk"                    /* a basic listing of tracks within a playlist */
-    case iTunesEKndAlbumListing = "kAlb"                    /* a listing of a playlist grouped by album */
-    case iTunesEKndCdInsert = "kCDi"                        /* a printout of the playlist for jewel case inserts */
+// Enums of 4cc types
+
+enum iTunesEKnd: DescType {
+    case iTunesEKndTrackListing =   0x6B54726B  // kTrk     /* a basic listing of tracks within a playlist */
+    case iTunesEKndAlbumListing =   0x6B416C62  // kAlb     /* a listing of a playlist grouped by album */
+    case iTunesEKndCdInsert =       0x6B434469  // kCDi     /* a printout of the playlist for jewel case inserts */
 }
 
-enum iTunesEnum: String {
-    case iTunesEnumStandard = "lwst"                        /* Standard PostScript error handling */
-    case iTunesEnumDetailed = "lwdt"                        /* print a detailed report of PostScript errors */
+enum iTunesEnum: DescType {
+    case iTunesEnumStandard =       0x6C777374  // lwst     /* Standard PostScript error handling */
+    case iTunesEnumDetailed =       0x6C776474  // lwdt     /* print a detailed report of PostScript errors */
 }
 
-enum iTunesEPlS: String {
-    case iTunesEPlSStopped = "kPSS"
-    case iTunesEPlSPlaying = "kPSP"
-    case iTunesEPlSPaused = "kPSp"
-    case iTunesEPlSFastForwarding = "kPSF"
-    case iTunesEPlSRewinding = "kPSR"
+enum iTunesEPlS: DescType {
+    case iTunesEPlSStopped =        0x6B505353  // kPSS
+    case iTunesEPlSPlaying =        0x6B505350  // kPSP
+    case iTunesEPlSPaused =         0x6B505370  // kPSp
+    case iTunesEPlSFastForwarding = 0x6B505346  // kPSF
+    case iTunesEPlSRewinding =      0x6B505352  // kPSR
 }
 
-enum iTunesERpt: String {
-    case iTunesERptOff = "kRpO"
-    case iTunesERptOne = "kRp1"
-    case iTunesERptAll = "kAll"
+enum iTunesERpt: DescType {
+    case iTunesERptOff =            0x6B527030  // kRpO
+    case iTunesERptOne =            0x6B527031  // kRp1
+    case iTunesERptAll =            0x6B416C6C  // kAll
 }
 
-enum iTunesEVSz: String {
-    case iTunesEVSzSmall = "kVSS"
-    case iTunesEVSzMedium = "kVSM"
-    case iTunesEVSzLarge = "kVSL"
+enum iTunesEVSz: DescType {
+    case iTunesEVSzSmall =          0x6B565353  // kVSS
+    case iTunesEVSzMedium =         0x6B56534D  // kVSM
+    case iTunesEVSzLarge =          0x6B56534C  // kVSL
 }
 
-enum iTunesESrc: String {
-    case iTunesESrcLibrary = "kLib"
-    case iTunesESrcIPod = "kPod"
-    case iTunesESrcAudioCD = "kACD"
-    case iTunesESrcMP3CD = "kMCD"
-    case iTunesESrcRadioTuner = "kTun"
-    case iTunesESrcSharedLibrary = "kShd"
-    case iTunesESrcUnknown = "kUnk"
+enum iTunesESrc: DescType {
+    case iTunesESrcLibrary =        0x6B4C6962  // kLib
+    case iTunesESrcIPod =           0x6B506F64  // kPod
+    case iTunesESrcAudioCD =        0x6B414344  // kACD
+    case iTunesESrcMP3CD =          0x6B4D4344  // kMCD
+    case iTunesESrcRadioTuner =     0x6B54756E  // kTun
+    case iTunesESrcSharedLibrary =  0x6B536864  // kShd
+    case iTunesESrcUnknown =        0x6B556E6B  // kUnk
 }
 
-enum iTunesESrA: String {
-    case iTunesESrAAlbums = "kSrL"                          /* albums only */
-    case iTunesESrAAll = "kAll"                             /* all text fields */
-    case iTunesESrAArtists = "kSrR"                         /* artists only */
-    case iTunesESrAComposers = "kSrC"                       /* composers only */
-    case iTunesESrADisplayed = "kSrV"                       /* visible text fields */
-    case iTunesESrASongs = "kSrS"                           /* song names only */
+enum iTunesESrA: DescType {
+    case iTunesESrAAlbums =         0x6B53724C  // kSrL     /* albums only */
+    case iTunesESrAAll =            0x6B416C6C  // kAll     /* all text fields */
+    case iTunesESrAArtists =        0x6B537252  // kSrR     /* artists only */
+    case iTunesESrAComposers =      0x6B537243  // kSrC     /* composers only */
+    case iTunesESrADisplayed =      0x6B537256  // kSrV     /* visible text fields */
+    case iTunesESrASongs =          0x6B537253  // kSrS     /* song names only */
 }
 
-enum iTunesESpK: String {
-    case iTunesESpKNone = "kNon"
-    case iTunesESpKBooks = "kSpA"
-    case iTunesESpKFolder = "kSpF"
-    case iTunesESpKGenius = "kSpG"
-    case iTunesESpKITunesU = "kSpU"
-    case iTunesESpKLibrary = "kSpL"
-    case iTunesESpKMovies = "kSpI"
-    case iTunesESpKMusic = "kSpZ"
-    case iTunesESpKPodcasts = "kSpP"
-    case iTunesESpKPurchasedMusic = "kSpM"
-    case iTunesESpKTVShows = "kSpT"
+enum iTunesESpK: DescType {
+    case iTunesESpKNone =           0x6B4E6F6E  // kNon
+    case iTunesESpKBooks =          0x6B537041  // kSpA
+    case iTunesESpKFolder =         0x6B537046  // kSpF
+    case iTunesESpKGenius =         0x6B537047  // kSpG
+    case iTunesESpKITunesU =        0x6B537055  // kSpU
+    case iTunesESpKLibrary =        0x6B53704C  // kSpL
+    case iTunesESpKMovies =         0x6B537049  // kSpI
+    case iTunesESpKMusic =          0x6B53705A  // kSpZ
+    case iTunesESpKPodcasts =       0x6B537050  // kSpP
+    case iTunesESpKPurchasedMusic = 0x6B53704D  // kSpM
+    case iTunesESpKTVShows =        0x6B537054  // kSpT
 }
 
-enum iTunesEVdK: String {
-    case iTunesEVdKNone = "kNon"                            /* not a video or unknown video kind */
-    case iTunesEVdKHomeVideo = "kVdH"                       /* home video track */
-    case iTunesEVdKMovie = "kVdM"                           /* movie track */
-    case iTunesEVdKMusicVideo = "kVdV"                      /* music video track */
-    case iTunesEVdKTVShow = "kVdT"                          /* TV show track */
+enum iTunesEVdK: DescType {
+    case iTunesEVdKNone =           0x6B4E6F6E  // kNon     /* not a video or unknown video kind */
+    case iTunesEVdKHomeVideo =      0x6B566448  // kVdH     /* home video track */
+    case iTunesEVdKMovie =          0x6B56644D  // kVdM     /* movie track */
+    case iTunesEVdKMusicVideo =     0x6B566456  // kVdV     /* music video track */
+    case iTunesEVdKTVShow =         0x6B566454  // kVdT     /* TV show track */
 }
 
-enum iTunesERtK: String {
-    case iTunesERtKUser = "kRtU"                            /* user-specified rating */
-    case iTunesERtKComputed = "kRtC"                        /* iTunes-computed rating */
+enum iTunesERtK: DescType {
+    case iTunesERtKUser =           0x6B527455  // kRtU     /* user-specified rating */
+    case iTunesERtKComputed =       0x6B527443  // kRtC     /* iTunes-computed rating */
 }
 
-enum iTunesEAPD: String {
-    case iTunesEAPDComputer = "kAPC"
-    case iTunesEAPDAirPortExpress = "kAPX"
-    case iTunesEAPDAppleTV = "kAPT"
-    case iTunesEAPDAirPlayDevice = "kAPO"
-    case iTunesEAPDUnknown = "kAPU"
+enum iTunesEAPD: DescType {
+    case iTunesEAPDComputer =       0x6B415043  // kAPC
+    case iTunesEAPDAirPortExpress = 0x6B415058  // kAPX
+    case iTunesEAPDAppleTV =        0x6B415054  // kAPT
+    case iTunesEAPDAirPlayDevice =  0x6B41504F  // kAPO
+    case iTunesEAPDUnknown =        0x6B415055  // kAPU
 }
 
 // All the iTunes scripting protocols
@@ -115,14 +118,14 @@ enum iTunesEAPD: String {
     optional var printerFeatures: NSArray? { get }          // printer specific options (ro)
     optional var faxNumber: String? { get }                 // for fax number (ro)
     optional var targetPrinter: String? { get }             // for target printer (ro)
-    optional var errorHandling: String? { get }             // how errors are handled (iTunesEnum) (ro)
+    optional var errorHandling: DescType { get }            // how errors are handled (iTunesEnum) (ro)
     optional func close()                                   // Close an object
     optional func delete()                                  // Delete an element from an object
     optional func duplicateTo(SBObject) -> SBObject         // Duplicate one or more object(s)
     optional func exists() -> Bool                          // Verify if an object exists
     optional func open()                                    // open the specified object(s)
     optional func playOnce(Bool)                            // play the current track or the specified track or file.
-    optional func printPrintDialog(Bool, withProperties: iTunesPrintSettings, kind: String, theme: String)  // Print the specified object(s) (kind: (iTunesEKnd))
+    optional func printPrintDialog(Bool, withProperties: iTunesPrintSettings, kind: DescType, theme: String)  // Print the specified object(s) (kind: (iTunesEKnd))
 }
 
 /* iTunes Suite */
@@ -134,7 +137,7 @@ enum iTunesEAPD: String {
     optional var name: String? { get }                      // the name of the item
     optional func setName(String)                           //
     optional var persistentID: String? { get }              // the id of the item as a hexadecimal string. This id does not change over time. (ro)
-    optional func printPrintDialog(Bool, withProperties: iTunesPrintSettings, kind: String, theme: String)  // Print the specified object(s) (kind: (iTunesEKnd))
+    optional func printPrintDialog(Bool, withProperties: iTunesPrintSettings, kind: DescType, theme: String)  // Print the specified object(s) (kind: (iTunesEKnd))
     optional func close()                                   // Close an object
     optional func delete()                                  // Delete an element from an object
     optional func duplicateTo(SBObject) -> SBObject         // Duplicate one or more object(s)
@@ -148,9 +151,9 @@ enum iTunesEAPD: String {
 @objc protocol iTunesAirPlayDevice: iTunesItem {
     optional var active: Bool { get }                       // is the device currently being played to? (ro)
     optional var available: Bool { get }                    // is the device currently available? (ro)
-    optional var kind: String? { get }                      // the kind of the device (iTunesEAPD) (ro)
+    optional var kind: DescType { get }                     // the kind of the device (iTunesEAPD) (ro)
     optional var networkAddress: String? { get }            // the network (MAC) address of the device (ro)
-    optional var protected: Bool { get }                    // is the device password- or passcode-protected?
+    optional func protected() -> Bool                       // is the device password- or passcode-protected?
     optional var selected: Bool { get }                     // is the device currently selected?
     optional func setSelected(Bool)                         //
     optional var supportsAudio: Bool { get }                // does the device support audio playback? (ro)
@@ -216,9 +219,9 @@ enum iTunesEAPD: String {
     optional var shuffle: Bool { get }                      // play the songs in this playlist in random order?
     optional func setShuffle(Bool)                          //
     optional var size: Int { get }                          // the total size of all songs (in bytes) (ro)
-    optional var songRepeat: String? { get }                // playback repeat mode (iTunesERpt)
-    optional func setSongRepeat(String)                     //
-    optional var specialKind: String? { get }               // special playlist kind (iTunesESpK) (ro)
+    optional var songRepeat: DescType { get }               // playback repeat mode (iTunesERpt)
+    optional func setSongRepeat(DescType)                   //
+    optional var specialKind: DescType { get }              // special playlist kind (iTunesESpK) (ro)
     optional var time: String? { get }                      // the length of all songs in MM:SS format (ro)
     optional var visible: Bool { get }                      // is this playlist visible in the Source list? (ro)
     optional func moveTo(SBObject)                          // Move playlist(s) to a new location
@@ -265,7 +268,7 @@ enum iTunesEAPD: String {
     optional func userPlaylists() -> SBElementArray?        //
     optional var capacity: Int64 { get }                    // the total size of the source if it has a fixed size (ro)
     optional var freeSpace: Int64 { get }                   // the free space on the source if it has a fixed size (ro)
-    optional var kind: String? { get }                      // (iTunesESrc) (ro)
+    optional var kind: DescType { get }                     // (iTunesESrc) (ro)
     optional func update()                                  // update the specified iPod
     optional func eject()                                   // eject the specified iPod
 }
@@ -279,8 +282,8 @@ enum iTunesEAPD: String {
     optional func setAlbumArtist(String)                    //
     optional var albumRating: Int { get }                   // the rating of the album for this track (0 to 100)
     optional func setAlbumRating(Int)                       //
-    optional var albumRatingKind: String? { get }           // the rating kind of the album rating for this track (iTunesERtK)
-    optional func setAlbumRatingKind(String)                //
+    optional var albumRatingKind: DescType { get }          // the rating kind of the album rating for this track (iTunesERtK)
+    optional func setAlbumRatingKind(DescType)              //
     optional var artist: String? { get }                    // the artist/source of the track
     optional func setArtist(String)                         //
     optional var bitRate: Int { get }                       // the bit rate of the track (in kbps) (ro)
@@ -337,7 +340,7 @@ enum iTunesEAPD: String {
     optional var podcast: Bool { get }                      // is this track a podcast episode? (ro)
     optional var rating: Int { get }                        // the rating of this track (0 to 100)
     optional func setRating(Int)                            //
-    optional var ratingKind: String? { get }                // the rating kind of this track (iTunesERtK) (ro)
+    optional var ratingKind: DescType { get }               // the rating kind of this track (iTunesERtK) (ro)
     optional var releaseDate: NSDate? { get }               // the release date of this track (ro)
     optional var sampleRate: Int { get }                    // the sample rate of the track (in Hz) (ro)
     optional var seasonNumber: Int { get }                  // the season number of the track
@@ -372,8 +375,8 @@ enum iTunesEAPD: String {
     optional func setTrackNumber(Int)                       //
     optional var unplayed: Bool { get }                     // is this track unplayed?
     optional func setUnplayed(Bool)                         //
-    optional var videoKind: String? { get }                 // kind of video track (iTunesEVdK)
-    optional func setVideoKind(String)                      //
+    optional var videoKind: DescType { get }                // kind of video track (iTunesEVdK)
+    optional func setVideoKind(DescType)                    //
     optional var volumeAdjustment: Int { get }              // relative volume adjustment of the track (-100% to 100%)
     optional func setVolumeAdjustment(Int)                  //
     optional var year: Int { get }                          // the year the track was recorded/released
@@ -477,7 +480,7 @@ enum iTunesEAPD: String {
     optional var AirPlayEnabled: Bool { get }               // is AirPlay currently enabled? (ro)
     optional var converting: Bool { get }                   // is a track currently being converted? (ro)
     optional var currentAirPlayDevices: NSArray? { get }    // the currently selected AirPlay device(s)
-    //optional func setCurrentAirPlayDevices()              // TODO: setCurrentAirPlayDevices
+    optional func setCurrentAirPlayDevice(iTunesAirPlayDevice)  // TODO: setCurrentAirPlayDevices
     optional var currentStreamTitle: String? { get }        // the name of the current song in the playing stream (provided by streaming server) (ro)
     optional var currentStreamURL: String? { get }          // the URL of the playing stream or streaming web site (provided by streaming server) (ro)
     optional var EQEnabled: Bool { get }                    // is the equalizer enabled?
@@ -508,9 +511,9 @@ enum iTunesEAPD: String {
     optional var currentTrack: iTunesTrack? { get }         // the current targeted track (ro)
     optional var currentVisual: iTunesVisual? { get }       //  the currently selected visual plug-in
     optional func setCurrentVisual(iTunesVisual)            //
-    optional var playerState: String? { get }               // is iTunes stopped, paused, or playing? (iTunesEPlS) (ro)
-    optional var visualSize: String? { get }                // the size of the displayed visual (iTunesEVSz)
-    optional func setVisualSize(String)                     //
+    optional var playerState: DescType { get }              // is iTunes stopped, paused, or playing? (iTunesEPlS) (ro)
+    optional var visualSize: DescType { get }               // the size of the displayed visual (iTunesEVSz)
+    optional func setVisualSize(DescType)                   //
     optional func run()                                     // run iTunes
     optional func quit()                                    // quit iTunes
     optional func backTrack()                               // reposition to beginning of current track or go to previous track if already at start of current track
@@ -531,8 +534,12 @@ enum iTunesEAPD: String {
     optional func openLocation(String)                      // Opens a Music Store or audio stream URL
     optional func add(NSArray, to: SBObject) -> iTunesTrack // add one or more files to a playlist
     optional func convert(NSArray) -> iTunesTrack           // convert one or more files or tracks
-    optional func printPrintDialog(Bool, withProperties: iTunesPrintSettings, kind: String, theme: String)  // Print the specified object(s) (kind: (iTunesEKnd))
+    optional func printPrintDialog(Bool, withProperties: iTunesPrintSettings, kind: DescType, theme: String)  // Print the specified object(s) (kind: (iTunesEKnd))
 }
+
+extension SBApplication: iTunesApplication {}
+
+extension SBObject: iTunesItem, iTunesAirPlayDevice, iTunesArtwork, iTunesEncoder, iTunesEQPreset, iTunesPlaylist, iTunesAudioCDPlaylist, iTunesLibraryPlaylist, iTunesRadioTunerPlaylist, iTunesSource, iTunesTrack, iTunesAudioCDTrack, iTunesFileTrack, iTunesSharedTrack, iTunesURLTrack, iTunesUserPlaylist, iTunesFolderPlaylist, iTunesVisual, iTunesWindow, iTunesBrowserWindow, iTunesEQWindow, iTunesPlaylistWindow {}
 
 class iTunes {
     
