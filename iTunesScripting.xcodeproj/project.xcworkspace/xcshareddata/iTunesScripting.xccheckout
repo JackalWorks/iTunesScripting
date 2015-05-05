@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>F1440373-B85B-48EA-BD28-4BE843BE832F</string>
+	<key>IDESourceControlProjectName</key>
+	<string>iTunesScripting</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>C853317B0EDDB422EE5C538768F24CED0B9959F4</key>
+		<string>https://github.com/JackalWorks/iTunesScripting.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>iTunesScripting.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>C853317B0EDDB422EE5C538768F24CED0B9959F4</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/JackalWorks/iTunesScripting.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>C853317B0EDDB422EE5C538768F24CED0B9959F4</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>C853317B0EDDB422EE5C538768F24CED0B9959F4</string>
+			<key>IDESourceControlWCCName</key>
+			<string>iTunesScripting</string>
+		</dict>
+	</array>
+</dict>
+</plist>
