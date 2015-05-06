@@ -17,7 +17,7 @@ let iTunesScriptVersion = "12.1.2.27"
 // The iTunes bundle identifier
 let iTunesBundleIdentifier = "com.apple.iTunes"
 
-// Enums of 4cc types
+// MARK: Enums of 4cc types
 
 enum iTunesEKnd: DescType {
     case iTunesEKndTrackListing =   0x6B54726B  // kTrk     /* a basic listing of tracks within a playlist */
@@ -104,7 +104,7 @@ enum iTunesEAPD: DescType {
     case iTunesEAPDUnknown =        0x6B415055  // kAPU
 }
 
-// All the iTunes scripting protocols
+// MARK: All the iTunes scripting protocols
 
 /* Standard Suite */
 @objc protocol iTunesPrintSettings {
@@ -128,8 +128,8 @@ enum iTunesEAPD: DescType {
     optional func printPrintDialog(Bool, withProperties: iTunesPrintSettings, kind: DescType, theme: String)  // Print the specified object(s) (kind: (iTunesEKnd))
 }
 
-/* iTunes Suite */
-// an item
+/* MARK: iTunes Suite */
+// MARK: an item
 @objc protocol iTunesItem {
     optional var container: SBObject? { get }               // the container of the item (ro)
     optional var id: Int { get }                            // the id of the item
@@ -147,7 +147,7 @@ enum iTunesEAPD: DescType {
     optional func reveal()                                  // reveal and select a track or playlist
 }
 
-// an AirPlay device
+// MARK: an AirPlay device
 @objc protocol iTunesAirPlayDevice: iTunesItem {
     optional var active: Bool { get }                       // is the device currently being played to? (ro)
     optional var available: Bool { get }                    // is the device currently available? (ro)
@@ -162,7 +162,7 @@ enum iTunesEAPD: DescType {
     optional func setSoundVolume(Int)                       //
 }
 
-// a piece of art within a track
+// MARK: a piece of art within a track
 @objc protocol iTunesArtwork: iTunesItem {
     optional var data: NSImage? { get }                     // data for this artwork, in the form of a picture
     optional func setData(NSImage)                          //
@@ -175,12 +175,12 @@ enum iTunesEAPD: DescType {
     optional func setRawData(NSData)                        //
 }
 
-// converts a track to a specific file format
+// MARK: converts a track to a specific file format
 @objc protocol iTunesEncoder: iTunesItem {
     optional var format: String? { get }                    // the data format created by the encoder (ro)
 }
 
-// equalizer preset configuration
+// MARK: equalizer preset configuration
 @objc protocol iTunesEQPreset: iTunesItem {
     optional var band1: Double { get }                      // the equalizer 32 Hz band level (-12.0 dB to +12.0 dB)
     optional func setBand1(Double)                          //
@@ -209,7 +209,7 @@ enum iTunesEAPD: DescType {
     optional func setUpdateTracks(Bool)                     //
 }
 
-// a list of songs/streams
+// MARK: a list of songs/streams
 @objc protocol iTunesPlaylist: iTunesItem {
     optional var tracks: SBElementArray? { get }            //
     optional var duration: Int { get }                      // the total length of all songs (in seconds) (ro)
@@ -228,7 +228,7 @@ enum iTunesEAPD: DescType {
     optional func searchFor(String, only: String)           // search a playlist for tracks matching the search string. Identical to entering search text in the Search field in iTunes.
 }
 
-// a playlist representing an audio CD
+// MARK: a playlist representing an audio CD
 @objc protocol iTunesAudioCDPlaylist: iTunesPlaylist {
     optional var audioCDTracks: SBElementArray? { get }     //
     optional var artist: String? { get }                    // the artist of the CD
@@ -247,19 +247,19 @@ enum iTunesEAPD: DescType {
     optional func setYear(Int)                              //
 }
 
-// the master music library playlist
+// MARK: the master music library playlist
 @objc protocol iTunesLibraryPlaylist: iTunesPlaylist {
     optional var fileTracks: SBElementArray? { get }        //
     optional var URLTracks: SBElementArray? { get }         //
     optional var sharedTracks: SBElementArray? { get }      //
 }
 
-// the radio tuner playlist
+// MARK: the radio tuner playlist
 @objc protocol iTunesRadioTunerPlaylist: iTunesPlaylist {
     optional var URLTracks: SBElementArray? { get }         //
 }
 
-// a music source (music library, CD, device, etc.)
+// MARK: a music source (music library, CD, device, etc.)
 @objc protocol iTunesSource: iTunesItem {
     optional func audioCDPlaylists() -> SBElementArray?     //
     optional func libraryPlaylists() -> SBElementArray?     //
@@ -273,7 +273,7 @@ enum iTunesEAPD: DescType {
     optional func eject()                                   // eject the specified iPod
 }
 
-// playable audio source
+// MARK: playable audio source
 @objc protocol iTunesTrack: iTunesItem {
     optional func artworks() -> SBElementArray?             //
     optional var album: String? { get }                     // the album name of the track
@@ -383,31 +383,31 @@ enum iTunesEAPD: DescType {
     optional func setYear(Int)
 }
 
-// a track on an audio CD
+// MARK: a track on an audio CD
 @objc protocol iTunesAudioCDTrack: iTunesTrack {
     optional var location: NSURL? { get }                   // the location of the file represented by this track (ro)
 }
 
-// a track representing an audio file (MP3, AIFF, etc.)
+// MARK: a track representing an audio file (MP3, AIFF, etc.)
 @objc protocol iTunesFileTrack: iTunesTrack {
     optional var location: NSURL? { get }                   // the location of the file represented by this track
     optional func setLocation(NSURL)                        //
     optional func refresh()                                 // update file track information from the current information in the track’s file
 }
 
-// a track residing in a shared library
+// MARK: a track residing in a shared library
 @objc protocol iTunesSharedTrack: iTunesTrack {
     // TODO: iTunesSharedTrack empty?
 }
 
-// a track representing a network stream
+// MARK: a track representing a network stream
 @objc protocol iTunesURLTrack: iTunesTrack {
     optional var address: String? { get }                   // the URL for this track
     optional func setAddress(String)                        //
     optional func download()                                // download podcast episode
 }
 
-// custom playlists created by the user
+// MARK: custom playlists created by the user
 @objc protocol iTunesUserPlaylist: iTunesPlaylist {
     optional var fileTracks: SBElementArray? { get }        //
     optional var URLTracks: SBElementArray? { get }         //
@@ -417,17 +417,17 @@ enum iTunesEAPD: DescType {
     optional var smart: Bool { get }                        // is this a Smart Playlist? (ro)
 }
 
-// a folder that contains other playlists
+// MARK: a folder that contains other playlists
 @objc protocol iTunesFolderPlaylist: iTunesUserPlaylist {
     // TODO: iTunesFolderPlaylist empty?
 }
 
-// a visual plug-in
+// MARK: a visual plug-in
 @objc protocol iTunesVisual: iTunesItem {
     // TODO: iTunesVisual empty?
 }
 
-// any window
+// MARK: any window
 @objc protocol iTunesWindow: iTunesItem {
     optional var bounds: NSRect { get }                     // the boundary rectangle for the window
     optional func setBounds(NSRect)                         //
@@ -445,7 +445,7 @@ enum iTunesEAPD: DescType {
     optional func setZoomed(Bool)                           //
 }
 
-// the main iTunes window
+// MARK: the main iTunes window
 @objc protocol iTunesBrowserWindow: iTunesWindow {
     optional var minimized: Bool { get }                    // is the small player visible?
     optional func setMinimized(Bool)                        //
@@ -454,19 +454,19 @@ enum iTunesEAPD: DescType {
     optional func setView(iTunesPlaylist)                   //
 }
 
-// the iTunes equalizer window
+// MARK: the iTunes equalizer window
 @objc protocol iTunesEQWindow: iTunesWindow {
     optional var minimized: Bool { get }                    // is the small EQ window visible?
     optional func setMinimized(Bool)                        //
 }
 
-// a sub-window showing a single playlist
+// MARK: a sub-window showing a single playlist
 @objc protocol iTunesPlaylistWindow: iTunesWindow {
     optional var selection: SBObject? { get }               // the selected songs (ro)
     optional var view: iTunesPlaylist? { get }              // the playlist currently displayed in the window (ro)
 }
 
-// The application program
+// MARK: The application program
 @objc protocol iTunesApplication {
     optional func AirPlayDevices() -> SBElementArray
     optional func browserWindows() -> SBElementArray

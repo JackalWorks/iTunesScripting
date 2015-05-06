@@ -56,6 +56,9 @@ if let track = tunes.currentTrack! {
     }
     print("\n")
     print("File is ")
+    if let kind = track.kind! {
+        print("\(kind) ")
+    }
     if let bitRate = track.bitRate {
         print("\(bitRate) kbps ")
     }
